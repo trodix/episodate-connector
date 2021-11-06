@@ -1,0 +1,19 @@
+{
+    "name": "Episodate serienstream connector",
+    "description": "A connector to watch series on serienstream.sx from episodate.com watchlist",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "web_accessible_resources": [{
+        "matches": ["<all_urls>"],
+        "resources": ["images/tv-retro.svg"]
+    }]
+}
