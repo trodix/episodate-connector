@@ -1,11 +1,12 @@
 if (typeof init === 'undefined') {
   const init = function () {
-    executeInternal();
+    main();
+    console.log("episodate-serienstream-connector.js chargé");
   }
   init();
 }
 
-function executeInternal() {
+function main() {
   const toWatchElementList = document.querySelectorAll(".cd-timeline-block");
   for (const toWatchElement of toWatchElementList) {
     const serieRaw = toWatchElement.querySelector(".cd-timeline-content-title-small").innerHTML.split("<small>")[0];

@@ -10,7 +10,15 @@
             ],
             "js": [
                 "lib/slugify.min.js",
-                "contentScript.js"
+                "episodate-serienstream-connector.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://serienstream.sx/serie/stream/*/staffel-*/episode-*"
+            ],
+            "js": [
+                "serienstream-autoplay-next-episode.js"
             ]
         }
     ],
