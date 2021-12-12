@@ -11,6 +11,9 @@
             "js": [
                 "lib/slugify.min.js",
                 "contentScript.js"
+            ],
+            "css": [
+                "main.css"
             ]
         }
     ],
@@ -26,7 +29,8 @@
                 "<all_urls>"
             ],
             "resources": [
-                "images/tv-retro.svg"
+                "images/tv-retro.svg",
+                "main.css"
             ]
         }
     ]

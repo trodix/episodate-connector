@@ -1,0 +1,40 @@
+.connector-watch-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.connector-watch-btn {
+  border: none;
+  border-radius: 50%;
+  background-color: #ffff;
+  height: 48px;
+  width: 48px;
+}
+
+.connector-watch-dropdown:hover .connector-watch-btn {
+  background-color: #dadada;
+}
+
+.connector-watch-dropdown:hover .connector-watch-dropdown-content {
+    display: flex;
+}
+
+.connector-watch-dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  background-color: #ffff;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+a.connector-watch-dropdown-item {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  padding: 8px 48px;
+}
+
+a.connector-watch-dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #747474;
+}
