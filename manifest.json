@@ -20,10 +20,19 @@
             "js": [
                 "serienstream-autoplay-next-episode.js"
             ]
+        },
+        {
+            "matches": [
+                "https://voe.sx/e/*"
+            ],
+            "js": [
+                "voe-autoplay.js"
+            ]
         }
     ],
     "permissions": [
-        "scripting"
+        "scripting",
+        "storage"
     ],
     "host_permissions": [
         "<all_urls>"
