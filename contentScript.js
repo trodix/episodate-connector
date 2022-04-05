@@ -5,18 +5,22 @@ if (typeof init === 'undefined') {
   init();
 }
 
-function executeInternal() {
+async function executeInternal() {
   const toWatchElementList = document.querySelectorAll(".cd-timeline-block:not(.cd-inactive)");
   for (const toWatchElement of toWatchElementList) {
     const serieRaw = toWatchElement.querySelector(".cd-timeline-content-title-small").innerHTML.split("<small>")[0];
-    const serie = slugify(serieRaw, { remove: /[':]/g, lower: true });
+    const serie = serieRaw.replace(/(&amp;)/, " ").trim();
     const metadata = toWatchElement.querySelector("span.title b").textContent;
     const season = metadata.split("E")[0].replace('S', '').replace(/^0+/, '');
     const episode = metadata.split("E")[1].replace(/^0+/, '');
 
     const buttonsContainer = toWatchElement.querySelector(".cd-timeline-content-buttons");
 
-    buildDropdown(buttonsContainer, getConnectorList({ serie, season, episode }));
+    const items = await findEpisode({ serie, season, episode });
+
+    if (items.length > 0) {
+      buildDropdown(buttonsContainer, items)
+    }
   }
 }
 
@@ -56,17 +60,19 @@ function buildLink({ name, url }) {
   return a;
 }
 
-function getConnectorList({ serie, season, episode }) {
-  return [
-    { name: "SerienStream", url: serienstreamConnector({ serie, season, episode }) },
-    { name: "tvshows88", url: tvshows88Connector({ serie, season, episode }) },
-  ]
-}
+async function findEpisode({ serie, season, episode }) {
 
-function serienstreamConnector({ serie, season, episode }) {
-  return `https://serienstream.sx/serie/stream/${serie}/staffel-${season}/episode-${episode}`;
-}
+  const result = [];
 
-function tvshows88Connector({ serie, season, episode }) {
-  return `https://tvshows88.org/episode/${serie}-season-${season}-episode-${episode}`;
+  try {
+    const response = await fetch(`http://localhost:8000/api/public/series/search/${serie}/?season=${season}&episode=${episode}`);
+    const data = await response.json();
+
+    data.urls.forEach(url => result.push({ name: new URL(url).hostname, url }));
+
+  } catch (e) {
+    console.error(`Error while searching for the serie ${serie}, season ${season}, episode ${episode}`, e)
+  }
+
+  return result;
 }

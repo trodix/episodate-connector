@@ -1,7 +1,7 @@
 {
     "name": "Episodate serienstream connector",
-    "description": "A connector to watch series on serienstream.sx from episodate.com watchlist",
-    "version": "1.0.1",
+    "description": "A connector to watch series on some websites from episodate.com watchlist",
+    "version": "1.1.0",
     "manifest_version": 3,
     "content_scripts": [
         {
@@ -9,7 +9,6 @@
                 "https://www.episodate.com/watchlist*"
             ],
             "js": [
-                "lib/slugify.min.js",
                 "contentScript.js"
             ],
             "css": [
