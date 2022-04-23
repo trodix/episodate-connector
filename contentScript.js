@@ -65,7 +65,7 @@ async function findEpisode({ serie, season, episode }) {
   const result = [];
 
   try {
-    const response = await fetch(`http://localhost:8000/api/public/series/search/${serie}/?season=${season}&episode=${episode}`);
+    const response = await fetch(`http://app.trodix.com:8002/api/public/series/search/${serie}/?season=${season}&episode=${episode}`);
     const data = await response.json();
 
     data.urls.forEach(url => result.push({ name: new URL(url).hostname, url }));
